@@ -1,0 +1,22 @@
+name: Deploy Rails App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Deploy to production
+      run: |
+        bundle exec db:migrate
+        bundle exec assets:precompile
