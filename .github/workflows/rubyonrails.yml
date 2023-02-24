@@ -29,6 +29,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
+      - name: install bundler
+        run: bundle install --full-index
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1 # v1.127.0
         with:
