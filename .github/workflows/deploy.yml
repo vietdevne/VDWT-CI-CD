@@ -11,7 +11,7 @@ jobs:
 
     services:
       sqlite:
-        image: docker.io/library/sqlite:latest
+        image: sqlite:latest
         ports:
           - 5432/tcp
         options: >-
