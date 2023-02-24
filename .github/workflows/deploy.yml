@@ -9,6 +9,16 @@ jobs:
   deploy:
     runs-on: self-hosted
 
+    services:
+      sqlite:
+        image: docker.io/library/sqlite:latest
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd="sqlite3 --version"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
