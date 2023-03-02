@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/myapp
+      - db_data://myapp/db
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: sqlite3:////myapp/db/development.sqlite3
+  db:
+    image: keinos/sqlite3:3.40.1
+    volumes:
+      - db_data://myapp/db
+    environment:
+      SQLITE_DATABASE: //myapp/db/development.sqlite3
+volumes:
+  db_data:
